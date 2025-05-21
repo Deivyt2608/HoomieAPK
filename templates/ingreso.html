@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Hoomie</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/static/imagenes/icono.png" />
+        <link rel="stylesheet" href="/static/css/formularios.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <script src="/static/js/java.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body class="ingreso">
+        <div class="contenedor">
+            <a href="inicio"> <img src="/static/imagenes/logo2.png" width="180px"></a>
+            <h1>¡Bienvenido Nuevamente!</h1>
+            <p>Identificate para ingresar<p>
+                <form action="/login" method="post">
+                    <ul>
+                        <li class="input-container">
+                            <input type="email" class="input-container-input" id="email" name="email_usuario" placeholder="" value="{{ request.query_params.get('correo') or '' }}" required  required/>
+                            <label for="email" class="input-container-label" id="emailL">Correo Electrónico</label>
+                        </li>  
+                
+                        <li class="input-container">
+                            <input type="password" class="input-container-input" id="pass" name="pass_usuario" placeholder="" required />
+                            <label for="pass" class="input-container-label" id="passL">Contraseña</label>
+                        </li>
+                        <a href="olvida"><p>¿Olvidaste tu Contraseña?</p></a>
+                
+                        <section class="Botones">
+                            <li class="button">
+                                <a href="ingreso"> <button onclick="window.history.back()" class="botonAzu">Regresar</button></a>  
+                            </li>
+                            
+                            <li class="button">
+                                <button  class="botonAma">Ingresar</button>
+                            </li>      
+                        </section>
+
+                        <p>¿No tienes cuenta? <a href="registro">Crear Cuenta</a></p>
+                    </ul>
+                </form>                
+        </div>
+        <div id="toast" class="toast"></div>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const toast = document.getElementById("toast");
+
+            const mensaje = params.get("mensaje");
+            const correo = params.get("correo");
+
+            if (mensaje === "error") {
+                mostrarToast("❌ Ups… algo no coincide. ¿Correo o contraseña incorrectos?");
+            } else if (mensaje === "exito") {
+                mostrarToast("✅ Bienvenido a Hoomie");
+            }
+
+            function mostrarToast(texto) {
+                toast.textContent = texto;
+                toast.classList.add("mostrar");
+                setTimeout(() => toast.classList.remove("mostrar"), 3500);
+            }
+        </script>
+        <div id="toast" class="toast"></div>
+
+        <script>
+        
+        if (mensaje === "preferencias_guardadas") {
+            mostrarToast("✅ Tus preferencias fueron guardadas con éxito.");
+        } else if (mensaje === "sesion_requerida") {
+            mostrarToast("⚠️ Necesitas iniciar sesión para acceder a esta página.");
+        }
+        
+        function mostrarToast(texto) {
+            toast.textContent = texto;
+            toast.classList.add("mostrar");
+            setTimeout(() => toast.classList.remove("mostrar"), 3500);
+        }
+        </script>
+    </body>
+</html>

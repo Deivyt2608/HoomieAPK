@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}{{ publicacion.nombre }} - Hoomie{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/detalle.css">
+{% endblock %}
+
+{% block content %}
+  <section class="detalle-container">
+  <div class="detalle-header">
+    <a href="/publicaciones?tipo={{ request.query_params.tipo or '' }}&ciudad={{ request.query_params.ciudad or '' }}&estrato={{ request.query_params.estrato or '' }}"><i class="fa-solid fa-circle-arrow-left"></i></a>
+    <h1 class="detalle-titulo">{{ publicacion.nombre }}</h1>
+  </div>
+
+  <div class="detalle-info">
+    <div class="detalle-foto">
+      <img id="foto-principal" src="{{ publicacion.inmueble.fotos.split(',')[0] }}" alt="Foto del inmueble" onclick="abrirGaleria(fotoIndex)">
+      <div class="controles">
+        <span onclick="cambiarImagen(-1)">&#10094;</span>
+        <span onclick="cambiarImagen(1)">&#10095;</span>
+      </div>
+      <div class="miniaturas">
+        {% for foto in publicacion.inmueble.fotos.split(',') %}
+          <img src="{{ foto }}" onclick="seleccionarMiniatura({{ loop.index0 }})">
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="detalle-datos">
+      <p><strong>Ciudad:</strong> {{ publicacion.inmueble.ciudad }}</p>
+      <p><strong>Barrio:</strong> {{ publicacion.inmueble.barrio }}</p>
+      <p><strong>Estrato:</strong> {{ publicacion.inmueble.estrato }}</p>
+      <p><strong>Valor arriendo:</strong> ${{ publicacion.inmueble.valor_arriendo }}</p>
+      {% if publicacion.inmueble.valor_administracion %}
+        <p><strong>Administración:</strong> ${{ publicacion.inmueble.valor_administracion }}</p>
+      {% endif %}
+      <p><strong>Área:</strong> {{ publicacion.inmueble.area_m2 }} m²</p>
+      <p><strong>Habitaciones:</strong> {{ publicacion.inmueble.num_habitaciones }}</p>
+      <p><strong>Baños:</strong> {{ publicacion.inmueble.num_banos }}</p>
+      <p><strong>Parqueaderos:</strong> {{ publicacion.inmueble.num_parqueaderos }}</p>
+      <p><strong>Género preferido:</strong> {{ publicacion.inmueble.genero_preferido }}</p>
+      <p><strong>Mascotas:</strong> {{ 'Sí' if publicacion.inmueble.permite_mascotas else 'No' }}</p>
+      <p><strong>Fumadores:</strong> {{ 'Sí' if publicacion.inmueble.permite_fumadores else 'No' }}</p>
+      <p><strong>Fiestas:</strong> {{ 'Sí' if publicacion.inmueble.permite_fiestas else 'No' }}</p>
+    </div>
+  </div>
+
+  <div class="detalle-descripcion">
+    <strong>Descripción:</strong>
+    <p>{{ publicacion.descripcion }}</p>
+  </div>
+
+  <div class="detalle-publicador">
+    <strong>Publicado por:</strong>
+    <p>{{ publicacion.usuario.nombre }} {{ publicacion.usuario.apellido }} - {{ publicacion.usuario.email }}</p>
+    <p>Teléfono: {{ publicacion.usuario.phone }}</p>
+  </div>
+</section>
+
+<div id="galeriaModal" class="galeria-modal">
+  <span class="galeria-cerrar" onclick="cerrarGaleria()">&times;</span>
+  <img id="imagenGaleria" src="" alt="Imagen ampliada">
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const fotos = {{ publicacion.inmueble.fotos.split(',') | tojson | safe }};
+  let fotoIndex = 0;
+
+  function cambiarImagen(direccion) {
+    fotoIndex = (fotoIndex + direccion + fotos.length) % fotos.length;
+    actualizarImagen();
+  }
+
+  function seleccionarMiniatura(index) {
+    fotoIndex = index;
+    actualizarImagen();
+  }
+
+  function actualizarImagen() {
+    const principal = document.getElementById("foto-principal");
+    principal.src = fotos[fotoIndex];
+    document.querySelectorAll(".miniaturas img").forEach((img, i) => {
+      img.classList.toggle("seleccionada", i === fotoIndex);
+    });
+  }
+
+  function abrirGaleria(index) {
+    fotoIndex = index;
+    document.getElementById("imagenGaleria").src = fotos[fotoIndex];
+    document.getElementById("galeriaModal").style.display = "flex";
+  }
+
+  function cerrarGaleria() {
+    document.getElementById("galeriaModal").style.display = "none";
+  }
+</script>
+{% endblock %}

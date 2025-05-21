@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Hoomie{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/formularios.css">
+    <link rel="stylesheet" href="/static/css/perfil.css">
+{% endblock %}
+
+{% block content %}
+    <div class="base1">
+        <div class="contenedor" id="datos">
+            <p>Información personal</p>
+            <form action="/editar-perfil" method="post" enctype="multipart/form-data">
+                <ul>
+                    <li class="input-container">
+                        <input type="text" class="input-container-input" id="nombre" name="nombre_usuario" value="{{ usuario_logueado.nombre }}" required />
+                        <label for="nombre" class="input-container-label">Nombre(s)</label>
+                    </li>
+
+                    <li class="input-container">
+                        <input type="text" class="input-container-input" id="apellido" name="apellido_usuario" value="{{ usuario_logueado.apellido }}" required/>
+                        <label for="apellido" class="input-container-label">Apellidos</label>
+                    </li>
+
+                    <li class="input-container">
+                        <input type="number" class="input-container-input" id="phone" name="phone_usuario" value="{{ usuario_logueado.phone }}" required />
+                        <label for="phone" class="input-container-label">Número de Celular</label>
+                    </li>   
+
+                    <li class="input-container">
+                        <input type="email" class="input-container-input" id="email" name="email_usuario" value="{{ usuario_logueado.email }}" required readonly/>
+                        <label for="email" class="input-container-label">Correo Electrónico</label>
+                    </li>  
+
+
+                    <li class="input-container">
+                        <label for="foto">Foto de perfil</label><br>
+                        <input type="file" id="foto" name="foto_usuario" accept="image/*">
+                    </li>
+
+                    <section class="Botones">
+                        <li class="button">
+                            <button type="submit" class="botonAma">Guardar cambios</button>
+                        </li>   
+                    </section>
+                </ul>
+            </form>              
+        </div>
+
+        <div class="foto-container">
+            {% if usuario_logueado.foto %}
+                <img src="{{ usuario_logueado.foto }}" class="fotoPerfil">
+            {% else %}
+                <img src="/static/imagenes/perfil.png" class="fotoPerfil">
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

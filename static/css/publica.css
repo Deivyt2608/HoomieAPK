@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Chicle&family=Fredoka:wght@700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+#footerp{
+  width: 98%;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+
+/* Anuncio */
+
+.anuncio-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+
+
+.anuncio-banner {
+    background-color: #fff4d6;
+    padding: 15px 20px;
+    position: fixed;
+    top: 80px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.6s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .anuncio-banner.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .anuncio-banner a {
+    font-weight: bold;
+    color: #0077ff;
+    text-decoration: none;
+  }
+  
+  .anuncio-banner a:hover {
+    text-decoration: underline;
+  }
+  
+  .cerrar-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  /* Banner */
+  .publica-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+  }
+  
+  .publica-texto {
+    max-width: 500px;
+    
+  }
+  .publica-texto h1 {
+    font-size: 45px;
+    line-height: 1.2;
+    font-weight: bold;
+    font-family: "Fredoka", sans-serif;
+  }
+  
+  .publica-texto p {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #444;
+  }
+  
+  .publica-ilustracion img {
+    max-width: 500px;
+    width: 100%;
+  }
+  #openModalBtn{
+    width: 210px;
+    margin-left: 60px;
+  }
+
+  /* Modal */
+  
+.modal {
+    font-family: "Montserrat", sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    h2{
+      margin-bottom: 0px;
+    }
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    animation: slideUp 0.4s ease;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  /* Formulario por pasos */
+  .form-step {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .form-step.active {
+    display: flex;
+    p{
+      margin: 0px;
+    }
+  }
+  
+  .progress-bar {
+    height: 6px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .progress {
+    height: 100%;
+    width: 0%;
+    background: #4caf50;
+    transition: width 0.3s ease;
+  }
+  
+  .botones {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button:disabled {
+    background-color: #ffc87554;
+    cursor: not-allowed;
+  }
+
+  .next{
+    background-color: #FFC875;
+    color: black;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 120px;
+  }
+
+  .cancel, .back{
+    background-color: #CFEBFD; 
+    color: black;
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 120px;
+  }
+  .input-group {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    width: 90%;
+    padding: 14px 12px 17px 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-group label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    background: white;
+  }
+  
+  .input-group input:focus,
+  .input-group textarea:focus {
+    border-color: #FFC875;
+  }
+  
+  .input-group input:focus + label,
+  .input-group input:not(:placeholder-shown) + label,
+  .input-group textarea:focus + label,
+  .input-group textarea:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 12px;
+    color: #FFC875;
+  }
+  .radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.custom-radio {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.custom-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-mark {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  height: 20px;
+  width: 20px;
+  background-color: #f1f1f1;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-radio input:checked ~ .radio-mark {
+  background-color: #FFC875;
+  border-color: #FFC875;
+}
+
+.radio-mark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.custom-radio input:checked ~ .radio-mark::after {
+  display: block;
+}
+
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(50px); opacity: 0; }
+}
+
+
+.formulario-container {
+  max-width: 800px;
+  margin: 8% auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.formulario-container h2 {
+  margin-bottom: 15px;
+}
+.formulario-container label {
+  display: block;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.formulario-container input,
+.formulario-container select,
+.formulario-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formulario-container button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #FFC875;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
