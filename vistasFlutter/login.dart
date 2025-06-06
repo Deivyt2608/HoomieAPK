@@ -33,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
 
-          // Logo
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -51,22 +50,23 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
 
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Text(
-                _isLogin ? '¡Bienvenido Nuevamente!' : '¡Crear Cuenta Nueva!',
+                _isLogin ? '¡Bienvenido!' : '¡Crear Cuenta Nueva!',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
+
               const SizedBox(height: 10),
               Text(
                 _isLogin ? 'Identifícate para ingresar' : 'Completa tus datos',
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
-              const SizedBox(height: 30),
 
+              const SizedBox(height: 30),
               // Email Field
               TextField(
                 controller: _emailController,
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   filled: true,
                   fillColor: Colors.grey[100],
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(50),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   filled: true,
                   fillColor: Colors.grey[100],
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(50),
                     borderSide: BorderSide.none,
                   ),
                 ),
@@ -105,13 +105,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                     child: const Text(
                       '¿Olvidaste tu Contraseña?',
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: Color.fromARGB(255, 25, 0, 255)),
                     ),
                   ),
                 ),
 
-              const SizedBox(height: 20),
-
+              const SizedBox(height: 30),
               // Buttons
               Row(
                 children: [
