@@ -32,6 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ],
           ),
+
+          // Logo
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -39,53 +41,16 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.orange,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.sentiment_satisfied,
-                      color: Colors.white,
-                    ),
+                  Image.asset(
+                    'assets/logo2.png',
+                    width: 200,
+                    height: 130,
+                    fit: BoxFit.contain,
                   ),
                   const SizedBox(width: 10),
-                  Container(
-                    width: 40,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.sentiment_neutral,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Container(
-                    width: 30,
-                    height: 30,
-                    decoration: const BoxDecoration(color: Colors.black),
-                    child: const Icon(
-                      Icons.home,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                  ),
                 ],
               ),
-              const SizedBox(height: 10),
-              const Text(
-                'HOOMIE',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
+
               const SizedBox(height: 30),
               Text(
                 _isLogin ? '¡Bienvenido Nuevamente!' : '¡Crear Cuenta Nueva!',
